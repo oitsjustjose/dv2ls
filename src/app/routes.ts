@@ -2,6 +2,11 @@ import { Application } from 'express'
 import Urls from './schema'
 
 export default (app: Application) => {
+
+    app.get('/', async(req, res) => {
+        res.render('home')
+    })
+
     app.get('/:id', async (req, res) => {
         try {
             const urlObj = await Urls.findById(req.params.id);
