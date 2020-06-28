@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, './app/Views'))
 
 /* Begin connection to MongoDB via Mongoose */
 
-mongoose.connect('mongodb://172.16.1.10/oitsjustjo.se', {
+mongoose.connect('mongodb://172.16.1.10/URLShortener', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then((db) => {
