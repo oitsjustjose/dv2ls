@@ -1,0 +1,22 @@
+/******************************************************
+*   FIXED COLORS (Change these to propagate chages)   *
+******************************************************/
+
+$background: #252525;
+$foreground: #eeeeee;
+$components: (
+  "item": #3a3a3a,
+  "button": #3a3a3a
+);
+
+$red: #ff4340;
+$cyan: #00bee0;
+$green: #7cb342;
+$mastColor: #7cb342;
+
+/******************************************************
+*        DYNAMIC COLORS (Probably Don't Touch!)       *
+******************************************************/
+
+$cardColor: lighten($background, 2%);
+$item: lighten($background, 10%);

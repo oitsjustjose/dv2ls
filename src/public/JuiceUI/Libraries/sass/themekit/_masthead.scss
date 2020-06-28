@@ -1,0 +1,77 @@
+.masthead {
+  height: 100vh;
+  width: 100%;
+  background-color: $mastColor;
+  color: $background;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &.rainbow {
+    -webkit-animation: Rainbow 30s ease infinite;
+    -moz-animation: Rainbow 30s ease infinite;
+    animation: Rainbow 30s ease infinite;
+
+    @-webkit-keyframes Rainbow {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+    @-moz-keyframes Rainbow {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+    @keyframes Rainbow {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+  }
+
+  &.gradient {
+    background: url("/Resources/img/cover.png"), $mastColor;
+    background: url("/Resources/img/cover.png"), -webkit-linear-gradient(to bottom left, $cyan, $green);
+    background: url("/Resources/img/cover.png"), linear-gradient(to bottom left, $cyan, $green);
+  }
+
+  p.content {
+    font-size: 64px;
+    font-weight: 900;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .subheader {
+      font-size: 32px;
+      text-align: center;
+    }
+
+    .subsubheader {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+
+  .down {
+    position: absolute;
+    bottom: 0;
+    i {
+      font-size: 64px;
+    }
+  }
+}

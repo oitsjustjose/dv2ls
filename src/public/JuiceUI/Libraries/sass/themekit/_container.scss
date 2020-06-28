@@ -1,0 +1,23 @@
+.container {
+  padding: 2rem 5vw;
+
+  &.centered {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+.divider {
+  width: 70vw;
+  height: 10px;
+  border-bottom: 1px solid map-get($components, "item");
+  margin: 1rem auto;
+  &.wide {
+    width: 100%;
+  }
+  &.narrow {
+    width: 30vw;
+  }
+}

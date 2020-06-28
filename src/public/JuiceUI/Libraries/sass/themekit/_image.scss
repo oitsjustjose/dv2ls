@@ -1,0 +1,23 @@
+img.centered {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    &.rounded {
+        border-radius: 8px;
+    }
+    &.thumbnail {
+        width: 24px;
+    }
+    &.small {
+        width: 128px;
+    }
+    &.medium {
+        width: 256px;
+    }
+    &.large {
+        width: 512px;
+    }
+}
