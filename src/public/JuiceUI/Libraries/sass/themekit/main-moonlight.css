@@ -6,54 +6,37 @@
 ******************************************************/
 @import url("https://fonts.googleapis.com/css?family=Fira+Code&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Spartan&display=swap");
-.color-demo {
-  cursor: pointer;
-  text-align: center;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(14, 15, 23, 0.5);
-          box-shadow: 0px 0px 10px 0px rgba(14, 15, 23, 0.5);
-  -webkit-transition: all ease-in-out 150ms;
-  transition: all ease-in-out 150ms;
-}
-
-.color-demo.red {
-  background-color: #ff4340;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(255, 17, 13, 0.5);
-          box-shadow: 0px 0px 10px 0px rgba(255, 17, 13, 0.5);
-}
-
-.color-demo.blue {
-  background-color: #00bee0;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 147, 173, 0.5);
-          box-shadow: 0px 0px 10px 0px rgba(0, 147, 173, 0.5);
-}
-
-.color-demo.green {
-  background-color: #7cb342;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(98, 142, 52, 0.5);
-          box-shadow: 0px 0px 10px 0px rgba(98, 142, 52, 0.5);
-}
-
-.color-demo.bg {
-  background-color: #222436;
-}
-
-.color-demo.fg {
-  background-color: #ccdbf1;
-  color: #222436;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(204, 219, 241, 0.5);
-          box-shadow: 0px 0px 10px 0px rgba(204, 219, 241, 0.5);
-}
-
-.color-demo:hover {
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
-}
-
 .display-mode-icon {
   font-size: 1.4rem;
   text-align: center;
+}
+
+.url-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: auto;
+  width: 98vw;
+  max-width: 768px;
+  height: 75vh;
+}
+
+.url-form-container .form {
+  width: 100%;
+}
+
+.url-form-container .form .input[type='text'] {
+  width: 100%;
 }
 
 body {
