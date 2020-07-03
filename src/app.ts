@@ -1,9 +1,11 @@
 import { json as BodyParserJson, urlencoded as BodyParserUrlEncoded } from 'body-parser'
+import { config as InitEnv } from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
 import path from 'path'
-
 import routes from './app/routes'
+
+InitEnv()
 
 const app = express()
 
@@ -19,7 +21,7 @@ app.set('views', path.join(__dirname, './app/Views'))
 
 /* Begin connection to MongoDB via Mongoose */
 
-mongoose.connect('mongodb://172.16.1.10/URLShortener', {
+mongoose.connect(`mongodb://${process.env.MONGO_URL}/URLShortener`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then((db) => {
