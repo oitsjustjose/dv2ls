@@ -5,51 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" type="image/png" href="/JuiceUI/Resources/img/Mala.png" />
+    <link rel="icon" type="image/png" href="/assets/img/Mala.png" />
 
-    <link href="/JuiceUI/Libraries/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="/JuiceUI/Libraries/sass/themekit/main-dark.css" rel="stylesheet" id="themekit-css">
+    <link rel="stylesheet" href="/Libraries/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/Libraries/bootstrap/css/bootstrap.css">
 
-    <script src="/JuiceUI/Libraries/js/themekit/menu.js"></script>
-    <script src="/JuiceUI/Libraries/js/themekit/modal.js"></script>
-    <script src="/JuiceUI/Libraries/js/app.js"></script>
+    <script src="/Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/home.js"></script>
+
+    <style>
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            margin: auto;
+            height: 90vh;
+            max-height: 90vh;
+            width: 98vw;
+            max-width: 768px;
+        }
+    </style>
 
     <title>oitsjustjo.se - Shorten URLs</title>
 </head>
 
-<body style="visibility: hidden;" onload="document.body.style.visibility = 'visible'">
-    <div class="top translucent titlebar ">
-        <div class="mobile-menu">
-            <div class="close-mobile-menu" onclick='toggleMenu()'>
-                <i class="fas fa-times"></i>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img width="24" src="/assets/img/Mala.png">
+                oitsjustjo.se - URL Shortener
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/oitsjustjose/oitsjustjo.se" target="_blank">
+                            <span>Source&nbsp;<i class="fab fa-github"></i></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="compact item" onclick="toggleDisplayMode()">
-                <span class="display-mode-icon">
-                </span>
+        </div>
+    </nav>
+
+    <div class="content-container">
+        <form>
+            <div class="mb-3">
+                <label for="url" class="form-label">Your URL to Shorten</label>
+                <input type="url" class="form-control" id="url">
             </div>
-        </div>
 
-        <!-- Mobile friendly menu -->
-        <div class="dropdown item compact" onclick='toggleMenu()'>
-            <span>
-                <i class="fa fa-bars"></i>&nbsp;Menu
-            </span>
-        </div>
-        <div class="item" onclick="toggleDisplayMode()">
-            <span class="display-mode-icon"></span>
-        </div>
-        <a href="https://github.com/oitsjustjose/oitsjustjo.se" target="_blank" class="item">
-            <span>Source&nbsp;<i class="fab fa-github"></i></span>
-        </a>
-    </div>
-
-    <div class="url-form-container">
-        <form action="/add" style="width: 100%">
-            <label for="url">Paste your URL to Shorten!</label>
-            <input type="text" name="url" id="url" style="width: 100%; margin-bottom: 2rem;">
-            <input type="submit" value="Shorten!">
+            <button type="submit" class="btn btn-primary d-block m-auto mb-3">Shorten!</button>
         </form>
     </div>
+
 </body>
 
 </html>
