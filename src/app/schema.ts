@@ -1,7 +1,12 @@
 import mongoose, { Document, Schema, Types } from 'mongoose'
+import shortid from 'shortid'
 
 const UrlSchema: Schema = new Schema({
-    shortid: String,
+    shortid: {
+        type: String,
+        default: shortid.generate,
+        unique: true
+    },
     url: String
 })
 

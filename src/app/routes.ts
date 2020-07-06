@@ -11,7 +11,7 @@ export default (app: Application) => {
         try {
             const urlObj = await Urls.findOne({
                 shortid: req.params.shortid
-            });
+            })
 
             if (urlObj) {
                 res.redirect(urlObj.url)
@@ -19,28 +19,26 @@ export default (app: Application) => {
                 res.status(404).end()
             }
         } catch (ex) {
-            console.error(ex);
+            console.error(ex)
             res.status(500).send({
                 error: ex
             })
         }
     })
 
-    app.post('/add', async (req, res) => {
-        if (req.query.url) {
-            /* Save DB room, try to find one first: */
+    app.put('/', async (req, res) => {
+        if (req.body.url) {
             const tmp = await Urls.findOne({
-                url: String(req.query.url)
+                url: String(req.body.url)
             })
 
             if (tmp) {
-                res.status(200).send(tmp)
+                res.json(tmp)
             } else {
-                const urlObj = new Urls()
-                urlObj.shortid = shortid.generate()
-                urlObj.url = String(req.query.url)
-                await urlObj.save()
-                res.status(200).send(urlObj)
+                const newUrl = new Urls()
+                newUrl.url = String(req.body.url)
+                await newUrl.save()
+                res.json(newUrl)
             }
         } else {
             res.status(422).end()
