@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, './app/Views'))
 
 /* Begin connection to MongoDB via Mongoose */
 
-mongoose.connect(`mongodb://${process.env.MONGO_URL}/URLShortener`, {
+mongoose.connect(`mongodb://${process.env.MONGO_URI}/URLShortener`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then((db) => {
