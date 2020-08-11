@@ -35,10 +35,7 @@ routes(app)
 
 /* Init server and server port */
 
-const port = process.env.PORT || 6969
-process.env.PORT = String(port)
-
-// TODO: logging
+const port = process.env.PORT
 
 app.listen(port, () => {
     process.stdout.write(`Listening on port ${port}\n`)
