@@ -31,17 +31,39 @@ export default () => {
     loading: false,
     result: null,
   });
+  const [renderState, setRenderState] = useState({
+    paste: null,
+    notFound: false,
+  });
+
   const query = new URLSearchParams(window.location.search);
   const isValid = state.paste && state.syntax && state.expiresAt;
-  const [render, setRender] = useState(null);
 
+  // Check if the user is _viewing_ a paste
   if (query.has('id')) {
-    if (!render) {
+    //   If the paste isn't loaded:
+    if (!renderState.paste) {
+      // If the paste attempted to load but wasn't found
+      if (renderState.notFound) {
+        return <h2 className="v-center">Paste Not Found</h2>;
+      }
+
+      // Grab the paste, and set it
       getTxtHandler(query.get('id'))
-        .then((d) => setRender(d));
-      return (<h1 className="v-center">Loading...</h1>);
+        .then((paste) => setRenderState({ ...renderState, paste }))
+        .catch(() => setRenderState({ ...renderState, notFound: true }));
+
+      // Render nice loading text :)
+      return <h1 className="v-center">Loading...</h1>;
     }
-    return (<TextRender paste={render.paste} syntax={render.syntax} />);
+
+    // Return the actual paste with the data!
+    return (
+      <TextRender
+        paste={renderState.paste.paste}
+        syntax={renderState.paste.syntax}
+      />
+    );
   }
 
   const submit = (evt) => {
@@ -75,7 +97,9 @@ export default () => {
                 onChange={(evt) => setState({ ...state, syntax: evt.target.value })}
               >
                 {Object.keys(Syntax).map((name, idx) => (
-                  <option selected={idx === 0} value={Syntax[name]}>{name}</option>
+                  <option selected={idx === 0} value={Syntax[name]}>
+                    {name}
+                  </option>
                 ))}
               </Form.Control>
             </InputGroup>
@@ -120,24 +144,27 @@ export default () => {
                 onChange={(evt) => setState({ ...state, expiresAt: evt.target.value })}
               >
                 {Object.keys(expirationOptions).map((name, idx) => (
-                  <option selected={idx === 0} value={expirationOptions[name]}>{name}</option>
+                  <option selected={idx === 0} value={expirationOptions[name]}>
+                    {name}
+                  </option>
                 ))}
               </Form.Control>
 
               <InputGroup.Append>
-                <Button type="submit" disabled={!isValid || state.loading}>Submit</Button>
+                <Button type="submit" disabled={!isValid || state.loading}>
+                  Submit
+                </Button>
               </InputGroup.Append>
             </InputGroup>
-
           </Form.Group>
         </Form>
 
         {state.result && (
-        <h5 className="text-center">
-          <a rel="noopener noreferrer" href={state.result} target="_blank">
-            {state.result}
-          </a>
-        </h5>
+          <h5 className="text-center">
+            <a rel="noopener noreferrer" href={state.result} target="_blank">
+              {state.result}
+            </a>
+          </h5>
         )}
       </Container>
     </CSSTransition>

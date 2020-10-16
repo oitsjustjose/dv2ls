@@ -13,11 +13,6 @@ export default async (req: Request, res: Response) => {
                 return res.status(404).send("PASTE_EXPIRED")
             }
 
-            if (req.query && paste.syntax === null) {
-                paste.syntax = Object.keys(req.query)[0]
-                await paste.save()
-            }
-
             return res.json({
                 paste: paste.paste,
                 syntax: paste.syntax

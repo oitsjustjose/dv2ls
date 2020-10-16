@@ -45,3 +45,9 @@
 .custom.custom-file *, input.custom-file-input {
     cursor: pointer;
 }
+
+.paste-view {
+    height: 75vh !important;
+    width: 100%;
+    max-width: 1024px;
+}
