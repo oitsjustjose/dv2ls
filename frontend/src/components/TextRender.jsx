@@ -4,12 +4,15 @@ import React from 'react';
 import AceEditor from 'react-ace';
 
 export default ({ paste, syntax }) => (
-  <div style={{ width: '100vw', height: 'calc(100vh - 3.5em)' }}>
+  <div
+    className="px-5 py-5"
+    style={{ width: '100vw', height: 'calc(100vh - 3.5em)' }}
+  >
     <AceEditor
       mode={`${syntax}`}
       theme="github"
       name="paste_viewer"
-      fontSize={14}
+      fontSize={18}
       value={paste}
       wrapEnabled
       readOnly
