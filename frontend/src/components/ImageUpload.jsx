@@ -6,17 +6,22 @@ import { CSSTransition } from 'react-transition-group';
 import putImgHandler from '../axios/putImgHandler';
 
 export default () => {
-  const [file, setFile] = useState(null);
-  const [isLoading, setLoading] = useState(false);
-  const [resultUrl, setResultUrl] = useState(null);
+  const [state, setState] = useState({
+    loading: false,
+    result: null,
+    file: null,
+  });
 
   const submit = (evt) => {
     evt.preventDefault();
-    if (file && file.name.length) {
-      setLoading(true);
-      putImgHandler(file).then((data) => {
-        setResultUrl(`http://${window.location.host}/i/${data}`.replace('5000', '3000'));
-        setLoading(false);
+    if (state.file && state.file.name.length) {
+      setState({ ...state, loading: true });
+      putImgHandler(state.file).then((data) => {
+        setState({
+          ...state,
+          result: `http://${window.location.host}/i/${data}`.replace('5000', '3000'),
+          loading: false,
+        });
       });
     }
   };
@@ -34,22 +39,22 @@ export default () => {
                 required
                 id="image"
                 accept="image/*"
-                label={(file && file.name) || 'Choose an Image..'}
-                onChange={(evt) => setFile(evt.target.files[0])}
+                label={(state.file && state.file.name) || 'Choose an Image..'}
+                onChange={(evt) => setState({ ...state, file: evt.target.files[0] })}
               />
               <InputGroup.Append>
-                <Button type="submit" disabled={isLoading}>
-                  {isLoading ? 'Loading...' : 'Submit'}
+                <Button type="submit" disabled={state.loading || !state.file}>
+                  {state.loading ? 'Loading...' : 'Submit'}
                 </Button>
               </InputGroup.Append>
             </InputGroup>
           </Form.Group>
         </Form>
 
-        {resultUrl && (
+        {state.result && (
         <h5 className="text-center">
-          <a rel="noopener noreferrer" href={resultUrl} target="_blank">
-            {resultUrl}
+          <a rel="noopener noreferrer" href={state.result} target="_blank">
+            {state.result}
           </a>
         </h5>
         )}

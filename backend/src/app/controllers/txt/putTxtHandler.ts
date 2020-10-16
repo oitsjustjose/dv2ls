@@ -7,7 +7,7 @@ export default async (req: Request, res: Response) => {
         const paste = new Pastes()
         paste.paste = req.body.paste
         paste.syntax = req.body.syntax
-        paste.expiresAt = moment().add(req.body.expiry).toDate()
+        paste.expiresAt = moment(req.body.expiresAt).toDate();
         await paste.save()
 
         return res.status(200).send(paste._id)
