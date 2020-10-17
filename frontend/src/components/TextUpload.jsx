@@ -47,7 +47,7 @@ export default () => {
       if (renderState.notFound) {
         return (
           <CSSTransition classNames="react-router" appear in timeout={300}>
-            <h2 className="v-center">Paste Not Found</h2>
+            <h2 className="v-center">Paste Not Found Or Expired</h2>
           </CSSTransition>
         );
       }

@@ -10,6 +10,7 @@ export default () => {
     url: null,
     loading: false,
     result: null,
+    error: false,
   });
 
   const submit = (evt) => {
@@ -21,7 +22,12 @@ export default () => {
           ...state,
           result: `http://${window.location.host}/u/${data}`.replace('5000', '3000'),
           loading: false,
+          error: false,
         });
+      }).catch((ex) => {
+        if (ex.response && ex.response.data === 'INVALID URL') {
+          setState({ ...state, error: true });
+        }
       });
     }
   };
@@ -47,6 +53,12 @@ export default () => {
                 </Button>
               </InputGroup.Append>
             </InputGroup>
+            {state.error && (
+            <Form.Text className="text-danger">
+              Please enter a valid URL
+            </Form.Text>
+            )}
+            <Form.Text className="danger" />
           </Form.Group>
         </Form>
 

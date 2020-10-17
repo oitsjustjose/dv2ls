@@ -10,7 +10,7 @@ export default async (req: Request, res: Response) => {
             // Check for an expired link
             if (moment().isAfter(moment(paste.expiresAt))) {
                 await Pastes.findByIdAndDelete(paste._id)
-                return res.status(404).send("PASTE_EXPIRED")
+                return res.status(404).send("PASTE EXPIRED")
             }
 
             return res.json({

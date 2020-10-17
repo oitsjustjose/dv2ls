@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
-import Images from '../../db/img.schema'
 import fs from 'fs'
-import path from 'path'
+import Images from '../../db/img.schema'
 
 export default async (req: Request, res: Response) => {
     try {
@@ -15,7 +14,7 @@ export default async (req: Request, res: Response) => {
                 /* If some other IP uploads, we want to add them too */
                 img.uploaders.push(req.clientIp as string)
                 await img.save()
-                return res.status(200).send(img._id);
+                return res.status(200).send(img._id)
             }
         }
 
@@ -27,7 +26,7 @@ export default async (req: Request, res: Response) => {
 
         await img.save()
 
-        return res.status(200).send(img._id);
+        return res.status(200).send(img._id)
     } catch (ex) {
         console.error(ex)
         return res.status(500).send({
