@@ -46,6 +46,5 @@ app.get("/p/:slug", getTxtHandler)
 // URL Shortener
 app.put("/api/url", putUrlHandler)
 app.get("/u/:slug", getUrlHandler)
-app.get("/:slug", getUrlHandler)
 
 export default app
