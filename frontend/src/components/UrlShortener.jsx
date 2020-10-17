@@ -41,7 +41,7 @@ export default () => {
           <Form.Group>
             <InputGroup>
               <Form.Control
-                type="text"
+                type="url"
                 value={state.url}
                 placeholder="URL To Shorten (https://...)"
                 onChange={(evt) => setState({ ...state, url: evt.target.value })}
