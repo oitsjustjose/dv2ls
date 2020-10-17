@@ -28,8 +28,8 @@ export default () => {
 
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
-      <Container className="perfect-width v-center">
-        <h2 className="text-center py-3">Image Uploader</h2>
+      <Container className="perfect-width">
+        <h2 className="text-center mt-10 py-3">Image Uploader</h2>
 
         <Form onSubmit={submit} className="perfect-width">
           <Form.Group>
