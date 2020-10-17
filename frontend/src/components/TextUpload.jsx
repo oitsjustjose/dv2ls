@@ -45,7 +45,11 @@ export default () => {
     if (!renderState.paste) {
       // If the paste attempted to load but wasn't found
       if (renderState.notFound) {
-        return <h2 className="v-center">Paste Not Found</h2>;
+        return (
+          <CSSTransition classNames="react-router" appear in timeout={300}>
+            <h2 className="v-center">Paste Not Found</h2>
+          </CSSTransition>
+        );
       }
 
       // Grab the paste, and set it
@@ -54,15 +58,21 @@ export default () => {
         .catch(() => setRenderState({ ...renderState, notFound: true }));
 
       // Render nice loading text :)
-      return <h1 className="v-center">Loading...</h1>;
+      return (
+        <CSSTransition classNames="react-router" appear in timeout={300}>
+          <h1 className="v-center">Loading...</h1>
+        </CSSTransition>
+      );
     }
 
     // Return the actual paste with the data!
     return (
-      <TextRender
-        paste={renderState.paste.paste}
-        syntax={renderState.paste.syntax}
-      />
+      <CSSTransition classNames="react-router" appear in timeout={300}>
+        <TextRender
+          paste={renderState.paste.paste}
+          syntax={renderState.paste.syntax}
+        />
+      </CSSTransition>
     );
   }
 
@@ -85,7 +95,7 @@ export default () => {
       <Container className="text-center m-auto">
         <h2 className="text-center mt-5 py-3">Pastebin</h2>
 
-        <Form onSubmit={submit} className="perfect-width  text-center m-auto">
+        <Form onSubmit={submit} className="perfect-width text-center m-auto">
           {/* Syntax Selection */}
           <Form.Group>
             <InputGroup>
@@ -107,7 +117,7 @@ export default () => {
 
           {/* Paste input */}
           <Form.Group>
-            <Container className="shadow px-0">
+            <Container className="shadow paste-edit p-0 rounded">
               <AceEditor
                 mode={`${state.syntax}`}
                 theme="github"
@@ -126,8 +136,9 @@ export default () => {
                   wrap: true,
                 }}
                 tabSize="4"
-                width="auto"
-                height="384px"
+                width="100%"
+                height="100%"
+                className="rounded"
               />
             </Container>
           </Form.Group>

@@ -7,7 +7,7 @@
 
 .perfect-width {
     max-width: 768px;
-    width: 85%;
+    width: 100%;
 }
 
 .v-center {
@@ -48,6 +48,12 @@
 
 .paste-view {
     height: 75vh !important;
+    width: 100%;
+    max-width: 1024px;
+}
+
+.paste-edit {
+    height: 33vh !important;
     width: 100%;
     max-width: 1024px;
 }
