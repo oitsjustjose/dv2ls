@@ -1,6 +1,13 @@
 {
   "short_name": "oitsjustjo.se",
   "name": "Utils for Devs!",
+  "icons": [
+    {
+      "src": "app-icon.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#17a2b8",
