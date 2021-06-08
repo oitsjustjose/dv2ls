@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install --production
+RUN npx browserslist --update-db
 
 COPY . .
 
@@ -16,8 +17,6 @@ FROM node:14-alpine AS server
 ENV NODE_ENV=production
 
 RUN npm install -g serve
-
-RUN apk add postgresql-client
 
 WORKDIR /app
 COPY package*.json ./
