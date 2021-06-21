@@ -35,16 +35,16 @@ const storage = multer.diskStorage({
         cb(null, `${file.fieldname}-${moment().toISOString()}`)
     }
 })
-
-const uploader = multer({ storage })
+// 52428800 = 50mb
+const uploader = multer({ storage, limits: { fileSize: 52428800 } })
 // Image Uploader
 app.put("/api/img", uploader.single("image"), putImageHandler)
 app.get("/i/:slug", getImageHandler)
 // Pastebin
 app.put("/api/paste", putTxtHandler)
 app.get("/p/:slug", getTxtHandler)
-// URL Shortener
+// URL Shortener -- LAST for a reason.
 app.put("/api/url", putUrlHandler)
-app.get("/u/:slug", getUrlHandler)
+app.get("/:slug", getUrlHandler)
 
 export default app

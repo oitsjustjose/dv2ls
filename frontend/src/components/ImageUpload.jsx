@@ -39,7 +39,7 @@ export default () => {
                 required
                 id="image"
                 accept="image/*"
-                label={(state.file && state.file.name) || 'Choose an Image..'}
+                label={(state.file && state.file.name) || 'Select Image (Max: 50MB)'}
                 onChange={(evt) => setState({ ...state, file: evt.target.files[0] })}
               />
               <InputGroup.Append>

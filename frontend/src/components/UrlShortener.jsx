@@ -20,7 +20,7 @@ export default () => {
       putUrlHandler(state.url).then((data) => {
         setState({
           ...state,
-          result: `http://${window.location.host}/u/${data}`.replace('5000', '3000'),
+          result: `${window.location.origin}/${data}`.replace('5000', '3000'),
           loading: false,
           error: false,
         });

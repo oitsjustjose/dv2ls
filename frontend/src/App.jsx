@@ -14,8 +14,8 @@ export default () => {
         <NavBar />
         <div style={{ paddingTop: `${3.5}em` }} />
         <Route exact path="/" component={UrlShortener} />
-        <Route exact path="/img" component={ImageUpload} />
-        <Route exact path="/paste" component={TextUpload} />
+        <Route exact path="/i" component={ImageUpload} />
+        <Route exact path="/p" component={TextUpload} />
       </Router>
     </React.StrictMode>,
     document.getElementById('root'),
