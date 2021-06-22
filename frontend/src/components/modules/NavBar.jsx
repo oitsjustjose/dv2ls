@@ -5,7 +5,7 @@ import NavLinkItem from './NavLinkItem';
 
 export default () => (
   <Navbar expand="lg" collapseOnSelect bg="dark" variant="dark" fixed="top">
-    <Navbar.Brand>{window.location.origin.substr(window.location.origin.indexOf('//') + 2)}</Navbar.Brand>
+    <Navbar.Brand>dv2ls: Dev Tools</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse>
       <Nav className="mr-auto">
