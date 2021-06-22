@@ -1,29 +1,29 @@
-import { Request, Response } from 'express'
-import Pastes from '../../db/txt.schema'
-import moment from 'moment-timezone'
+import { Request, Response } from "express";
+import Pastes from "../../db/txt.schema";
+import moment from "moment-timezone";
 
 export default async (req: Request, res: Response) => {
-    try {
-        const paste = await Pastes.findById(req.params.slug)
+  try {
+    const paste = await Pastes.findById(req.params.slug);
 
-        if (paste) {
-            // Check for an expired link
-            if (moment().isAfter(moment(paste.expiresAt))) {
-                await Pastes.findByIdAndDelete(paste._id)
-                return res.status(404).send("PASTE EXPIRED")
-            }
+    if (paste) {
+      // Check for an expired link
+      if (moment().isAfter(moment(paste.expiresAt))) {
+        await Pastes.findByIdAndDelete(paste._id);
+        return res.status(404).send("PASTE EXPIRED");
+      }
 
-            return res.json({
-                paste: paste.paste,
-                syntax: paste.syntax
-            })
-        } else {
-            return res.status(404).end()
-        }
-    } catch (ex) {
-        console.error(ex)
-        return res.status(500).send({
-            error: ex
-        })
+      return res.json({
+        paste: paste.paste,
+        syntax: paste.syntax,
+      });
+    } else {
+      return res.status(404).end();
     }
-}
+  } catch (ex) {
+    console.error(ex);
+    return res.status(500).send({
+      error: ex,
+    });
+  }
+};

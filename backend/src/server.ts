@@ -1,13 +1,13 @@
-import { config as LoadDotenv } from 'dotenv'
-import app from './app'
-import connectDB from './db'
+import { config as LoadDotenv } from "dotenv";
+import app from "./app";
+import connectDB from "./db";
 
-if(process.env.NODE_ENV !== "production") {
-    LoadDotenv()
+if (process.env.NODE_ENV !== "production") {
+  LoadDotenv();
 }
 
-connectDB()
+connectDB();
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Listening at http://127.0.0.1:${port}`))
+app.listen(port, () => console.log(`Listening at http://127.0.0.1:${port}`));

@@ -1,31 +1,34 @@
-import { Schema, model, Document } from 'mongoose'
-import shortid from 'shortid'
+import { Schema, model, Document } from "mongoose";
+import shortid from "shortid";
 
-const PasteSchema = new Schema({
+const PasteSchema = new Schema(
+  {
     _id: {
-        type: String,
-        default: shortid.generate
+      type: String,
+      default: shortid.generate,
     },
     paste: { type: String },
     syntax: {
-        type: String,
-        default: null
+      type: String,
+      default: null,
     },
     expiresAt: {
-        type: Date,
-        expires: 0,
-        default: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
+      type: Date,
+      expires: 0,
+      default: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     },
-}, {
-    timestamps: true
-})
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export type PasteModel = Document & {
-    _id: string,
-    paste: string,
-    syntax: string,
-    expiresAt: Date,
-    timestamps: Date
-}
+  _id: string;
+  paste: string;
+  syntax: string;
+  expiresAt: Date;
+  timestamps: Date;
+};
 
-export default model<PasteModel>('Paste', PasteSchema)
+export default model<PasteModel>("Paste", PasteSchema);
