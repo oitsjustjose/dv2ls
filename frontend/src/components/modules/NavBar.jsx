@@ -1,4 +1,4 @@
-import { faCode, faImage, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faCode, faFile, faLink } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import NavLinkItem from './NavLinkItem';
@@ -10,8 +10,8 @@ export default () => (
     <Navbar.Collapse>
       <Nav className="mr-auto">
         <NavLinkItem name="URL" dest="/" icon={faLink} />
-        <NavLinkItem name="Paste" dest="/p" icon={faCode} />
-        <NavLinkItem name="Img" dest="/i" icon={faImage} />
+        <NavLinkItem name="Code" dest="/p" icon={faCode} />
+        <NavLinkItem name="File" dest="/f" icon={faFile} />
       </Nav>
     </Navbar.Collapse>
   </Navbar>
