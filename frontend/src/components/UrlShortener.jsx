@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  InputGroup, Container, Form, Button,
+  Container, Form, Button, Col,
 } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import putUrlHandler from '../axios/putUrlHandler';
@@ -43,10 +43,10 @@ export default () => {
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
       <Container className="perfect-width">
-        <h2 className="text-center mt-10 py-3">Link Shortener</h2>
-        <Form onSubmit={submit} className="perfect-width">
-          <Form.Group>
-            <InputGroup>
+        <h2 className="text-center mt-10 py-3">URL Shortener</h2>
+        <Form onSubmit={submit} className="mb-3">
+          <Form.Row className="align-items-center justify-content-center">
+            <Col xs={12} lg={7} className="mb-osm-3">
               <Form.Control
                 type="url"
                 value={state.url}
@@ -54,23 +54,21 @@ export default () => {
                 onChange={(evt) => setState({ ...state, url: evt.target.value })}
                 required
               />
-              <InputGroup.Append>
-                <Form.Control
-                  type="text"
-                  style={{ width: '8rem', borderRadius: '0' }}
-                  value={state.slug}
-                  placeholder="Optional Slug"
-                  onChange={(evt) => setState({ ...state, slug: evt.target.value })}
-                />
-              </InputGroup.Append>
-              <InputGroup.Append>
-                <Button type="submit" disabled={state.loading || !state.url}>
-                  {state.loading ? 'Loading...' : 'Submit'}
-                </Button>
-              </InputGroup.Append>
-            </InputGroup>
-            <Form.Text className="danger" />
-          </Form.Group>
+            </Col>
+            <Col xs={12} lg={3} className="mb-osm-3">
+              <Form.Control
+                type="text"
+                value={state.slug}
+                placeholder="Optional Slug"
+                onChange={(evt) => setState({ ...state, slug: evt.target.value })}
+              />
+            </Col>
+            <div className="center-osm">
+              <Button type="submit" disabled={state.loading || !state.url}>
+                {state.loading ? 'Loading...' : 'Submit'}
+              </Button>
+            </div>
+          </Form.Row>
         </Form>
 
         {state.error && (

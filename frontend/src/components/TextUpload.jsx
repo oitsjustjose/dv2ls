@@ -93,7 +93,7 @@ export default () => {
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
       <Container className="text-center m-auto">
-        <h2 className="text-center mt-5 py-3">Pastebin</h2>
+        <h2 className="text-center mt-5 py-3">Codebin</h2>
 
         <Form onSubmit={submit} className="perfect-width text-center m-auto">
           {/* Syntax Selection */}
