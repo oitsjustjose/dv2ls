@@ -10,8 +10,8 @@ export default () => (
     <Navbar.Collapse>
       <Nav className="mr-auto">
         <NavLinkItem name="URL" dest="/" icon={faLink} />
-        <NavLinkItem name="Code" dest="/p" icon={faCode} />
-        <NavLinkItem name="File" dest="/f" icon={faFile} />
+        <NavLinkItem name="Code" dest="/code" icon={faCode} />
+        <NavLinkItem name="File" dest="/files" icon={faFile} />
       </Nav>
     </Navbar.Collapse>
   </Navbar>

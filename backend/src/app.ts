@@ -37,18 +37,15 @@ const storage = multer.diskStorage({
   },
 });
 
-const uploader = multer({
-  storage,
-  //   limits: { fileSize: 17825792 },
-}).single("file");
-// Image Uploader
+const uploader = multer({ storage }).single("file");
+// File Uploader
 app.put("/api/file", uploader, putFileHandler);
 app.get("/f/:slug", getFileHandler);
-// Pastebin
+// Codebin
 app.put("/api/paste", putTxtHandler);
-app.get("/p/:slug", getTxtHandler);
-// URL Shortener -- LAST for a reason.
+app.get("/c/:slug", getTxtHandler);
+// URL Shortener
 app.put("/api/url", putUrlHandler);
-app.get("/:slug", getUrlHandler);
+app.get("/api/:slug", getUrlHandler);
 
 export default app;
