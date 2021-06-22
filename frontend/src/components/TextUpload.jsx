@@ -83,7 +83,7 @@ export default () => {
       putTxtHandler(state).then((data) => {
         setState({
           ...state,
-          result: `http://${window.location.host}/p?id=${data}`,
+          result: `${window.location.origin}/p?id=${data}`,
           loading: false,
         });
       });
