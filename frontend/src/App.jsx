@@ -9,21 +9,32 @@ import UrlShortener from './components/UrlShortener';
 import CheckUrlRedirect from './axios/getUrlHandler';
 
 const slug = window.location.pathname.match(/[^/][^/]*/g);
+export const routes = [
+  { path: '/', component: UrlShortener },
+  { path: '/code', component: TextUpload },
+  { path: '/files', component: FileUpload },
+];
 
 export default () => {
-  // Check to see if slug is worth trying :)
-  !!slug && CheckUrlRedirect(slug).then((url) => {
-    window.location.href = url;
-  }).catch(() => {});
+  /* Ensure that there's a slug worth trying, and that it isn't
+      already a route that should be "protected"
+  */
+  if (!!slug && !routes.map(
+    ({ path }) => path,
+  ).includes(window.location.pathname)) {
+    CheckUrlRedirect(slug).then((url) => {
+      window.location.href = url;
+    }).catch(() => {});
+  }
 
   ReactDOM.render(
     <React.StrictMode>
       <Router>
         <NavBar />
         <div style={{ paddingTop: `${3.5}em` }} />
-        <Route exact path="/" component={UrlShortener} />
-        <Route exact path="/code" component={TextUpload} />
-        <Route exact path="/files" component={FileUpload} />
+        {routes.map(({ path, component }) => (
+          <Route exact path={path} component={component} />
+        ))}
       </Router>
     </React.StrictMode>,
     document.getElementById('root'),

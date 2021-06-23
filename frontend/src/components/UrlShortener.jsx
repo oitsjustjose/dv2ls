@@ -21,12 +21,21 @@ export default () => {
       putUrlHandler(
         state.url, state.slug,
       ).then((data) => {
-        setState({
-          ...state,
-          result: `${window.location.origin}/${data}`,
-          loading: false,
-          error: false,
-        });
+        if (data) {
+          setState({
+            ...state,
+            result: `${window.location.origin}/${data}`,
+            loading: false,
+            error: false,
+          });
+        } else {
+          setState({
+            ...state,
+            result: null,
+            loading: false,
+            error: 'There is a conflict with this slug. Please try a different one!',
+          });
+        }
       }).catch((ex) => {
         if (ex.response?.data?.error) {
           setState({
