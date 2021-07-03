@@ -1,4 +1,10 @@
 import axios from 'axios';
 
-export default (slug) => axios.get(`/api/${slug}`)
-  .then((resp) => resp.data);
+export default async (slug) => {
+  try {
+    const resp = await axios.get(`/api/${slug}`);
+    return resp.data;
+  } catch {
+    return null;
+  }
+};

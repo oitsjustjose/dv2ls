@@ -3,7 +3,7 @@ import {
   Button, Container, Form, InputGroup,
 } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
-import putImgHandler from '../axios/putFileHandler';
+import putFileHandler from '../axios/putFileHandler';
 
 const toMb = (size) => (size / 1000000).toFixed(2);
 
@@ -15,7 +15,7 @@ export default () => {
     error: null,
   });
 
-  const submit = (evt) => {
+  const submit = async (evt) => {
     evt.preventDefault();
     if (state.file && state.file.name.length) {
       if (state.file.size > 16000000) {
@@ -27,14 +27,14 @@ export default () => {
         });
         return;
       }
+
       setState({ ...state, loading: true });
-      putImgHandler(state.file).then((data) => {
-        setState({
-          loading: false,
-          result: `${window.location.origin}/f/${data}`.replace('5000', '3000'),
-          file: null,
-          error: null,
-        });
+      const data = await putFileHandler(state.file);
+      setState({
+        loading: false,
+        result: `${window.location.origin}/f/${data}`.replace('5000', '3000'),
+        file: null,
+        error: null,
       });
     }
   };

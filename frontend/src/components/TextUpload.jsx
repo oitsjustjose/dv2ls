@@ -31,6 +31,7 @@ export default () => {
     loading: false,
     result: null,
   });
+
   const [renderState, setRenderState] = useState({
     paste: null,
     notFound: false,
@@ -38,6 +39,15 @@ export default () => {
 
   const query = new URLSearchParams(window.location.search);
   const isValid = state.paste && state.syntax && state.expiresAt;
+
+  const loadPaste = async () => {
+    try {
+      const paste = await getTxtHandler(query.get('id'));
+      setRenderState({ ...renderState, paste });
+    } catch {
+      setRenderState({ ...renderState, notFound: true });
+    }
+  };
 
   // Check if the user is _viewing_ a paste
   if (query.has('id')) {
@@ -53,9 +63,7 @@ export default () => {
       }
 
       // Grab the paste, and set it
-      getTxtHandler(query.get('id'))
-        .then((paste) => setRenderState({ ...renderState, paste }))
-        .catch(() => setRenderState({ ...renderState, notFound: true }));
+      loadPaste();
 
       // Render nice loading text :)
       return (
@@ -76,16 +84,16 @@ export default () => {
     );
   }
 
-  const submit = (evt) => {
+  const submit = async (evt) => {
     evt.preventDefault();
+
     if (state.paste && state.syntax && state.expiresAt) {
       setState({ ...state, loading: true });
-      putTxtHandler(state).then((data) => {
-        setState({
-          ...state,
-          result: `${window.location.origin}/code?id=${data}`,
-          loading: false,
-        });
+      const data = await putTxtHandler(state);
+      setState({
+        ...state,
+        result: `${window.location.origin}/code?id=${data}`,
+        loading: false,
       });
     }
   };

@@ -15,16 +15,17 @@ export const routes = [
   { path: '/files', component: FileUpload },
 ];
 
-export default () => {
+export default async () => {
   /* Ensure that there's a slug worth trying, and that it isn't
       already a route that should be "protected"
   */
   if (!!slug && !routes.map(
     ({ path }) => path,
   ).includes(window.location.pathname)) {
-    CheckUrlRedirect(slug).then((url) => {
+    const url = await CheckUrlRedirect(slug);
+    if (url) {
       window.location.href = url;
-    }).catch(() => {});
+    }
   }
 
   ReactDOM.render(
