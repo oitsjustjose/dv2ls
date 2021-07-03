@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { routes } from '../App';
 
-export default async (url, slug) => {
+export default async ({ url, slug }) => {
   const paths = routes.map(({ path }) => path.substr(1));
   if (slug && paths.includes(slug)) {
     return null;

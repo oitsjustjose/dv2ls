@@ -14,13 +14,13 @@ export default () => {
     error: false,
   });
 
-  const submit = (evt) => {
+  const submit = async (evt) => {
     evt.preventDefault();
     if (state.url) {
       setState({ ...state, loading: true });
-      putUrlHandler(
-        state.url, state.slug,
-      ).then((data) => {
+
+      try {
+        const data = await putUrlHandler(state);
         if (data) {
           setState({
             ...state,
@@ -33,10 +33,11 @@ export default () => {
             ...state,
             result: null,
             loading: false,
-            error: 'There is a conflict with this slug. Please try a different one!',
+            error:
+              'There is a conflict with this slug. Please try a different one!',
           });
         }
-      }).catch((ex) => {
+      } catch (ex) {
         if (ex.response?.data?.error) {
           setState({
             ...state,
@@ -45,7 +46,7 @@ export default () => {
             error: ex.response.data.error,
           });
         }
-      });
+      }
     }
   };
 
@@ -81,9 +82,7 @@ export default () => {
         </Form>
 
         {state.error && (
-          <h5 className="text-center text-danger">
-            {state.error}
-          </h5>
+          <h5 className="text-center text-danger">{state.error}</h5>
         )}
 
         {state.result && (
