@@ -41,42 +41,50 @@ export default () => {
 
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
-      <Container className="perfect-width">
-        <h2 className="text-center mt-10 py-3">File Uploader</h2>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '85%',
+      }}
+      >
+        <Container className="perfect-width">
+          <h2 className="text-center py-3">Upload a File</h2>
+          <Form onSubmit={submit} className="perfect-width">
+            <Form.Group>
+              <InputGroup>
+                <Form.File
+                  custom
+                  required
+                  accept="*"
+                  label={(state.file && state.file.name) || 'Select File (Max: 16MB)'}
+                  onChange={(evt) => setState({ ...state, file: evt.target.files[0] })}
+                />
+                <InputGroup.Append>
+                  <Button type="submit" disabled={state.loading || !state.file}>
+                    {state.loading ? 'Loading...' : 'Submit'}
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form.Group>
+          </Form>
 
-        <Form onSubmit={submit} className="perfect-width">
-          <Form.Group>
-            <InputGroup>
-              <Form.File
-                custom
-                required
-                accept="*"
-                label={(state.file && state.file.name) || 'Select File (Max: 16MB)'}
-                onChange={(evt) => setState({ ...state, file: evt.target.files[0] })}
-              />
-              <InputGroup.Append>
-                <Button type="submit" disabled={state.loading || !state.file}>
-                  {state.loading ? 'Loading...' : 'Submit'}
-                </Button>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form.Group>
-        </Form>
+          {state.error && (
+          <h5 className="text-center text-danger">
+            {state.error}
+          </h5>
+          )}
 
-        {state.error && (
-        <h5 className="text-center text-danger">
-          {state.error}
-        </h5>
-        )}
-
-        {state.result && (
-        <h5 className="text-center">
-          <a rel="noopener noreferrer" href={state.result} target="_blank">
-            {state.result}
-          </a>
-        </h5>
-        )}
-      </Container>
+          {state.result && (
+          <h5 className="text-center">
+            <a rel="noopener noreferrer" href={state.result} target="_blank">
+              {state.result}
+            </a>
+          </h5>
+          )}
+        </Container>
+      </div>
     </CSSTransition>
   );
 };

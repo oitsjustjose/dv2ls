@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import {
-  Button, Container, Form, InputGroup,
+  Button, Container, Form, InputGroup, Spinner,
 } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import getTxtHandler from '../axios/getTxtHandler';
@@ -56,9 +56,9 @@ export default () => {
       // If the paste attempted to load but wasn't found
       if (renderState.notFound) {
         return (
-          <CSSTransition classNames="react-router" appear in timeout={300}>
-            <h2 className="v-center">Paste Not Found Or Expired</h2>
-          </CSSTransition>
+          <div className="mt-5 text-center">
+            <h5>Paste Not Found Or Expired</h5>
+          </div>
         );
       }
 
@@ -67,9 +67,10 @@ export default () => {
 
       // Render nice loading text :)
       return (
-        <CSSTransition classNames="react-router" appear in timeout={300}>
-          <h1 className="v-center">Loading...</h1>
-        </CSSTransition>
+        <div className="mt-5 text-center">
+          <Spinner animation="border" role="status" />
+          <h5>Loading...</h5>
+        </div>
       );
     }
 
@@ -101,8 +102,6 @@ export default () => {
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
       <Container className="text-center m-auto">
-        <h2 className="text-center mt-5 py-3">Codebin</h2>
-
         <Form onSubmit={submit} className="perfect-width text-center m-auto">
           {/* Syntax Selection */}
           <Form.Group>

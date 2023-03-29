@@ -7,12 +7,14 @@ import NavBar from './components/modules/NavBar';
 import TextUpload from './components/TextUpload';
 import UrlShortener from './components/UrlShortener';
 import CheckUrlRedirect from './axios/getUrlHandler';
+import TextRender from './components/TextRender';
 
 const slug = window.location.pathname.match(/[^/][^/]*/g);
 export const routes = [
   { path: '/', component: UrlShortener },
-  { path: '/code', component: TextUpload },
   { path: '/files', component: FileUpload },
+  { path: '/code', component: TextUpload },
+  { path: '/test', component: TextRender },
 ];
 
 export default async () => {
@@ -31,11 +33,14 @@ export default async () => {
   ReactDOM.render(
     <React.StrictMode>
       <Router>
-        <NavBar />
-        <div style={{ paddingTop: `${3.5}em` }} />
-        {routes.map(({ path, component }) => (
-          <Route exact path={path} component={component} />
-        ))}
+        <div className="rootbox-flex">
+          <div className="rootbox">
+            <NavBar />
+            {routes.map(({ path, component }) => (
+              <Route exact path={path} component={component} />
+            ))}
+          </div>
+        </div>
       </Router>
     </React.StrictMode>,
     document.getElementById('root'),

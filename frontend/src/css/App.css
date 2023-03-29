@@ -15,18 +15,6 @@
   width: 100%;
 }
 
-.v-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh !important;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin-top: -3.5em !important;
-  padding-top: 3.5em !important;
-}
-
 .mt-10 {
   margin-top: 33%;
 }
@@ -60,14 +48,14 @@ input.custom-file-input {
   cursor: pointer;
 }
 
-.paste-view {
-  height: 75vh !important;
+.paste-edit {
+  aspect-ratio: 22/9;
   width: 100%;
   max-width: 1024px;
 }
 
-.paste-edit {
-  height: 33vh !important;
+.paste-view {
+  aspect-ratio: 16/9;
   width: 100%;
   max-width: 1024px;
 }
@@ -83,5 +71,35 @@ input.custom-file-input {
 
   .center-osm {
     margin: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("/tile.png");
+    background-repeat: repeat;
+  }
+
+  .rootbox-flex {
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .rootbox {
+    z-index: 99999;
+    border: 8px solid var(--white);
+    border-radius: 8px;
+    width: 896px;
+    aspect-ratio: 16/9;
+    background-color: var(--white);
   }
 }

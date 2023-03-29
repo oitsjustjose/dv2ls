@@ -52,47 +52,56 @@ export default () => {
 
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
-      <Container className="perfect-width">
-        <h2 className="text-center mt-10 py-3">URL Shortener</h2>
-        <Form onSubmit={submit} className="mb-3">
-          <Form.Row className="align-items-center justify-content-center">
-            <Col xs={12} lg={7} className="mb-osm-3">
-              <Form.Control
-                type="url"
-                value={state.url}
-                placeholder="URL To Shorten (https://...)"
-                onChange={(evt) => setState({ ...state, url: evt.target.value })}
-                required
-              />
-            </Col>
-            <Col xs={12} lg={3} className="mb-osm-3">
-              <Form.Control
-                type="text"
-                value={state.slug}
-                placeholder="Optional Slug"
-                onChange={(evt) => setState({ ...state, slug: evt.target.value })}
-              />
-            </Col>
-            <div className="center-osm">
-              <Button type="submit" disabled={state.loading || !state.url}>
-                {state.loading ? 'Loading...' : 'Submit'}
-              </Button>
-            </div>
-          </Form.Row>
-        </Form>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '85%',
+      }}
+      >
+        <Container className="perfect-width">
+          <h2 className="text-center py-3">Shorten a URL</h2>
+          <Form onSubmit={submit} className="mb-3">
+            <Form.Row className="align-items-center justify-content-center">
+              <Col xs={12} lg={7} className="mb-osm-3">
+                <Form.Control
+                  type="url"
+                  value={state.url}
+                  placeholder="URL To Shorten (https://...)"
+                  onChange={(evt) => setState({ ...state, url: evt.target.value })}
+                  required
+                />
+              </Col>
+              <Col xs={12} lg={3} className="mb-osm-3">
+                <Form.Control
+                  type="text"
+                  value={state.slug}
+                  placeholder="Optional Slug"
+                  onChange={(evt) => setState({ ...state, slug: evt.target.value })}
+                />
+              </Col>
+              <div className="center-osm">
+                <Button type="submit" disabled={state.loading || !state.url}>
+                  {state.loading ? 'Loading...' : 'Submit'}
+                </Button>
+              </div>
+            </Form.Row>
+          </Form>
 
-        {state.error && (
+          {state.error && (
           <h5 className="text-center text-danger">{state.error}</h5>
-        )}
+          )}
 
-        {state.result && (
+          {state.result && (
           <h5 className="text-center">
             <a rel="noopener noreferrer" href={state.result} target="_blank">
               {state.result}
             </a>
           </h5>
-        )}
-      </Container>
+          )}
+        </Container>
+      </div>
     </CSSTransition>
   );
 };
