@@ -60,7 +60,7 @@ export default () => {
         height: '85%',
       }}
       >
-        <Container className="perfect-width">
+        <Container>
           <h2 className="text-center py-3">Shorten a URL</h2>
           <Form onSubmit={submit} className="mb-3">
             <Form.Row className="align-items-center justify-content-center">

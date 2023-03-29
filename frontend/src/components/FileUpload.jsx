@@ -49,9 +49,9 @@ export default () => {
         height: '85%',
       }}
       >
-        <Container className="perfect-width">
+        <Container>
           <h2 className="text-center py-3">Upload a File</h2>
-          <Form onSubmit={submit} className="perfect-width">
+          <Form onSubmit={submit}>
             <Form.Group>
               <InputGroup>
                 <Form.File

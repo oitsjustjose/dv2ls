@@ -102,7 +102,7 @@ export default () => {
   return (
     <CSSTransition classNames="react-router" appear in timeout={300}>
       <Container className="text-center m-auto">
-        <Form onSubmit={submit} className="perfect-width text-center m-auto">
+        <Form onSubmit={submit} className="text-center m-auto">
           {/* Syntax Selection */}
           <Form.Group>
             <InputGroup>

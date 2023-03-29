@@ -4,7 +4,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import NavLinkItem from './NavLinkItem';
 
 export default () => (
-  <Navbar expand="lg" collapseOnSelect>
+  <Navbar expand="lg" collapseOnSelect style={{ zIndex: 9999999999999 }}>
     <Navbar.Brand>Dev Tools</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse>

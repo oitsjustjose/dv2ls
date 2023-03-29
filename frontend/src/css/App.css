@@ -10,11 +10,6 @@
   font-style: normal;
 }
 
-.perfect-width {
-  max-width: 768px;
-  width: 100%;
-}
-
 .mt-10 {
   margin-top: 33%;
 }
@@ -49,13 +44,11 @@ input.custom-file-input {
 }
 
 .paste-edit {
-  aspect-ratio: 22/9;
   width: 100%;
   max-width: 1024px;
 }
 
 .paste-view {
-  aspect-ratio: 16/9;
   width: 100%;
   max-width: 1024px;
 }
@@ -74,7 +67,25 @@ input.custom-file-input {
   }
 }
 
+@media only screen and (max-width: 992px) {
+  .paste-edit {
+    height: 100vh;
+  }
+
+  .paste-view {
+    height: 100vh;
+  }
+}
+
 @media only screen and (min-width: 992px) {
+  .paste-edit {
+    aspect-ratio: 22/9;
+  }
+
+  .paste-view {
+    aspect-ratio: 16/9;
+  }
+
   body {
     margin: 0;
     padding: 0;
